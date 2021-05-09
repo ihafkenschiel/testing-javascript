@@ -1,0 +1,1 @@
+node mock-fn.js
