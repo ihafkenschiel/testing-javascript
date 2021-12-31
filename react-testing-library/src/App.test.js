@@ -74,4 +74,11 @@ describe('Test search variants', () => {
     render(<App />)
     expect(screen.queryByText(/Searches for JavaScript/)).toBeNull();
   }) 
+
+  // Use findBy for async elements that will eventually appear
+  test('Renders async component (findByText)', async () => {
+    render(<App />)
+    expect(screen.queryByText(/Signed in as/)).toBeNull(); // Not there at first - use queryBy
+    expect(await screen.findByText(/Signed in as/)).toBeInTheDocument(); // Loaded - use findBy after await
+  }) 
 })
