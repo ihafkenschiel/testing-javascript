@@ -1,13 +1,13 @@
-import * as React from 'react'
+import * as React from "react";
 
 const App = () => {
-  const [search, setSearch] = React.useState('')
+  const [search, setSearch] = React.useState("");
 
   const handleChange = (event) => {
-    setSearch(event.target.value)
-  }
+    setSearch(event.target.value);
+  };
 
-  const Search = ({ value, onChange, children}) => {
+  const Search = ({ value, onChange, children }) => {
     return (
       <div>
         <label htmlFor="search">{children}</label>
@@ -16,20 +16,22 @@ const App = () => {
           type="text"
           value={value}
           onChange={onChange}
+          placeholder="Search..."
         />
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div>
+      <img alt="profile" />
       <Search value={search} onChange={handleChange}>
-        Search: 
+        Search:
       </Search>
 
-      <p>Searches for {search ? search : '...'}</p>
+      <p>Searches for {search ? search : "..."}</p>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

@@ -35,4 +35,24 @@ describe("renders App component", () => {
     render(<App />);
     expect(screen.getByRole("textbox")).toBeInTheDocument();
   });
+
+  test("Exists a label element (by Label Text)", () => {
+    render(<App />);
+    expect(screen.getByLabelText("Search:")).toBeInTheDocument();
+  });
+
+  test("Exists placeholder text", () => {
+    render(<App />);
+    expect(screen.getByPlaceholderText("Search...")).toBeInTheDocument();
+  });
+
+  test("Exists image (by Alt Text)", () => {
+    render(<App />);
+    expect(screen.getByAltText("profile")).toBeInTheDocument();
+  });
+
+  test("Exists input (by Display Value)", () => {
+    render(<App />);
+    expect(screen.getByDisplayValue("")).toBeInTheDocument();
+  });
 });
