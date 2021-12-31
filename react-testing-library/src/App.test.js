@@ -7,6 +7,8 @@ describe('App', () => {
   test('renders App component', () => {
     render(<App />);
     //screen.debug() // console.log
-    expect(screen.getByText('Search:')).toBeInTheDocument()
+    expect(screen.getByText('Search')).toBeInTheDocument() // Exact string match = fails
+    expect(screen.getByText('Search:')).toBeInTheDocument() // Exact string match = succeeds
+    expect(screen.getByText(/Search/)).toBeInTheDocument() // Regex partial match = succeeds
   });
 });
