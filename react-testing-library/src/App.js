@@ -1,9 +1,35 @@
 import * as React from 'react'
 
-const title = "Hello React";
+const App = () => {
+  const [search, setSearch] = React.useState('')
 
-function App() {
-  return React.createElement("div", null, title);
+  const handleChange = (event) => {
+    setSearch(event.target.value)
+  }
+
+  const Search = ({ value, onChange, children}) => {
+    return (
+      <div>
+        <label htmlFor="search">{children}</label>
+        <input
+          id="search"
+          type="text"
+          value={value}
+          onChange={onChange}
+        />
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      <Search value={search} onChange={handleChange}>
+        Search: 
+      </Search>
+
+      <p>Searches for {search ? search : '...'}</p>
+    </div>
+  )
 }
 
-export default App;
+export default App

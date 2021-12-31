@@ -6,7 +6,7 @@ import App from './App';
 describe('App', () => {
   test('renders App component', () => {
     render(<App />);
-
-    screen.debug();
+    //screen.debug() // console.log
+    expect(screen.getByText('Search:')).toBeInTheDocument()
   });
 });
