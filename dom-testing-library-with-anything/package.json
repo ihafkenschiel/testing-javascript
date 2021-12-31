@@ -1,0 +1,16 @@
+{
+  "name": "dom-testing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ian Hafkenschiel (https://ianhafkenschiel.com)",
+  "private": true,
+  "devDependencies": {
+    "@testing-library/dom": "^8.11.1",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
