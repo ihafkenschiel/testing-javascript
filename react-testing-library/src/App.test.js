@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
+import userEvent from '@testing-library/user-event'
 
 import App from "./App";
 
@@ -102,7 +103,7 @@ describe("Test search variants", () => {
     render(<App />);
     // Wait for user to resolve
     await screen.findByText(/Signed in as/);
-    
+
     expect(screen.queryByText(/Searches for JavaScript/)).toBeNull();
   });
 
@@ -117,15 +118,36 @@ describe("Test search variants", () => {
 });
 
 describe("Fire events", () => {
-  test("Write on input", async () => {
+  test("Write on input (with fireEvent.change)", async () => {
     render(<App />);
     // Wait for user to resolve
     await screen.findByText(/Signed in as/);
+
+    expect(screen.queryByText(/Searches for JavaScript/)).toBeNull();
 
     // screen.debug()
     fireEvent.change(screen.getByRole("textbox"), {
       target: { value: "JavaScript" },
     });
     // screen.debug()
+
+    expect(screen.getByText(/Searches for JavaScript/)).toBeInTheDocument();
   });
+
+  // fireEvent.change() triggers only a change event whereas userEvent.type triggers a change event, but also keyDown, keyPress, and keyUp events.
+  test("Write on input (with userEvent.type)", async () => {
+    render(<App />);
+    // Wait for user to resolve
+    await screen.findByText(/Signed in as/);
+
+    expect(screen.queryByText(/Searches for JavaScript/)).toBeNull();
+
+    // screen.debug()
+    await userEvent.type(screen.getByRole("textbox"), 'JavaScript');
+    // screen.debug()
+
+    expect(await screen.findByText(/Searches for JavaScript/)).toBeInTheDocument();
+  });
+
+
 });
