@@ -55,4 +55,9 @@ describe("renders App component", () => {
     render(<App />);
     expect(screen.getByDisplayValue("")).toBeInTheDocument();
   });
+
+  test("Exists input (by Test ID)", () => {
+    render(<App />);
+    expect(screen.getByTestId("search-result")).toBeInTheDocument();
+  });
 });
